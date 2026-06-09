@@ -324,6 +324,18 @@ img { display:block; max-width:100%; }
   background:var(--gold); border-color:var(--gold);
   color:var(--black); font-weight:600;
 }
+.fp--avail {
+  border-style:dashed;
+  border-color:rgba(201,168,76,.35);
+  margin-right:10px;
+}
+.fp--avail.active {
+  background:rgba(201,168,76,.12);
+  border-style:solid;
+  border-color:var(--gold);
+  color:var(--gold);
+  font-weight:600;
+}
 
 /* ── GRID ──────────────────────────────────── */
 .grid {

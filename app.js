@@ -101,8 +101,8 @@ const PERFUMES = [
   },
   {
     id:"e-004", nombre:"Club de Nuit Intense Man Extrait", marca:"Armaf", linea:"Club de Nuit",
-    categoria:"arabe", ml:100, precio:0,
-    en_promo:false, disponible:false, foto:"fotos/arabe/armaf-cdni-intense-extrait.webp",
+    categoria:"arabe", ml:50, precio:45,
+    en_promo:false, disponible:true, foto:"fotos/arabe/armaf-cdni-intense-extrait.webp",
     descripcion:"Piña · Bergamota · Abedul · Vainilla"
   },
   {
@@ -342,7 +342,7 @@ const PERFUMES = [
   {
     id:"o-003", nombre:"Hawas Kobra", marca:"Rasasi", linea:"Hawas",
     categoria:"arabe", ml:100, precio:38,
-    en_promo:false, disponible:false, foto:"",
+    en_promo:false, disponible:false, foto:"fotos/arabe/rasasi-hawas-kobra.jpg",
     descripcion:"Jengibre · Té Verde · Canela · Ámbar"
   },
   {
@@ -446,16 +446,12 @@ function buildSearch(items, searchId, grid, filterId) {
   const input = wrap.querySelector('.search-input');
   input.addEventListener('input', () => {
     const q = input.value.trim().toLowerCase();
-    document.getElementById(filterId)?.querySelectorAll('.fp').forEach((b,i) => {
-      b.classList.toggle('active', i === 0);
-    });
-    const filtered = q
-      ? items.filter(p =>
-          p.nombre.toLowerCase().includes(q) ||
-          p.marca.toLowerCase().includes(q) ||
-          p.descripcion.toLowerCase().includes(q))
-      : items;
-    renderCards(filtered, grid);
+    const fw = document.getElementById(filterId);
+    if (fw) {
+      fw.querySelectorAll('.fp:not(.fp--avail)').forEach((b,i) => b.classList.toggle('active', i === 0));
+      fw._brand = 'all';
+      fw._apply(q);
+    }
   });
 }
 
@@ -507,23 +503,44 @@ function cardHTML(p, i) {
 function buildFilter(items, filterId, grid, searchId) {
   const wrap = document.getElementById(filterId);
   if (!wrap) return;
+  wrap._items     = items;
+  wrap._brand     = 'all';
+  wrap._availOnly = false;
+
+  wrap._apply = function(q = '') {
+    let result = wrap._items;
+    if (wrap._brand !== 'all') result = result.filter(p => p.marca === wrap._brand);
+    if (wrap._availOnly)        result = result.filter(p => p.disponible && p.precio > 0);
+    if (q) result = result.filter(p =>
+      p.nombre.toLowerCase().includes(q) ||
+      p.marca.toLowerCase().includes(q) ||
+      p.descripcion.toLowerCase().includes(q));
+    renderCards(result, grid);
+  };
+
   const brands = ['all', ...new Set(items.map(p => p.marca))];
-  wrap.innerHTML = brands.map(b =>
-    `<button class="fp${b === 'all' ? ' active' : ''}" data-brand="${esc(b)}">
-      ${b === 'all' ? 'Todas las marcas' : esc(b)}
-    </button>`
-  ).join('');
-  wrap._items = items;
+  wrap.innerHTML =
+    `<button class="fp fp--avail" data-avail="1">✓ Solo disponibles</button>` +
+    brands.map(b =>
+      `<button class="fp${b === 'all' ? ' active' : ''}" data-brand="${esc(b)}">
+        ${b === 'all' ? 'Todas las marcas' : esc(b)}
+      </button>`
+    ).join('');
+
   wrap.addEventListener('click', e => {
     const btn = e.target.closest('.fp');
     if (!btn) return;
-    const searchInput = document.getElementById(searchId)?.querySelector('.search-input');
-    if (searchInput) searchInput.value = '';
-    wrap.querySelectorAll('.fp').forEach(b => b.classList.remove('active'));
-    btn.classList.add('active');
-    const brand    = btn.dataset.brand;
-    const filtered = brand === 'all' ? wrap._items : wrap._items.filter(p => p.marca === brand);
-    renderCards(filtered, grid);
+    const si = document.getElementById(searchId)?.querySelector('.search-input');
+    if (si) si.value = '';
+    if (btn.dataset.avail) {
+      wrap._availOnly = !wrap._availOnly;
+      btn.classList.toggle('active', wrap._availOnly);
+    } else {
+      wrap.querySelectorAll('.fp:not(.fp--avail)').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      wrap._brand = btn.dataset.brand;
+    }
+    wrap._apply('');
   });
 }
 
