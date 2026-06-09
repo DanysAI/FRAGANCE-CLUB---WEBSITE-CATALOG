@@ -448,6 +448,13 @@ img { display:block; max-width:100%; }
   text-decoration:line-through;
   letter-spacing:.04em;
 }
+.card-price--na {
+  color:var(--cream-20);
+  font-weight:500;
+  letter-spacing:.12em;
+  font-size:.78rem;
+  text-transform:uppercase;
+}
 
 /* ══════════════════════════════════════════
    PLACEHOLDER (Diseñador / Nicho)
