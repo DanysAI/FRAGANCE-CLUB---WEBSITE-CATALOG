@@ -1,34 +1,35 @@
 /* ═══════════════════════════════════════
-   FRAGANCE CLUB — APP.JS v5
+   FRAGANCE CLUB — APP.JS v6
    Ordenado: Marca A-Z → Línea A-Z → Nombre A-Z
+   Notas verificadas en Fragrantica
    ═══════════════════════════════════════ */
 
 const PERFUMES = [
 
   // ── AFNAN ─────────────────────────────────────────────────────
   {
-    id:"a-001", nombre:"9AM Dive", marca:"Afnan", linea:"9PM",
+    id:"a-001", nombre:"9AM Dive", marca:"Afnan", linea:"9AM",
     categoria:"arabe", ml:100, precio:0,
     en_promo:false, disponible:false, foto:"fotos/arabe/afnan-9am-dive.webp",
-    descripcion:"Cítricos acuáticos · Almizcle marino · Madera fresca"
+    descripcion:"Limón · Menta · Manzana · Sándalo"
   },
   {
     id:"a-002", nombre:"9PM Clásico", marca:"Afnan", linea:"9PM",
     categoria:"arabe", ml:100, precio:33.50,
     en_promo:false, disponible:true, foto:"fotos/arabe/afnan-9pm-clasico.jpg",
-    descripcion:"Tabaco · Vainilla · Ámbar cálido"
+    descripcion:"Manzana · Canela · Lavanda · Vainilla"
   },
   {
     id:"a-003", nombre:"9PM Night Out", marca:"Afnan", linea:"9PM",
     categoria:"arabe", ml:100, precio:0,
     en_promo:false, disponible:false, foto:"fotos/arabe/afnan-9pm-night-out.jpg",
-    descripcion:"Especias nocturnas · Oud · Almizcle intenso"
+    descripcion:"Pitahaya · Coñac · Toffee · Suede"
   },
   {
     id:"a-004", nombre:"Supremacy Collectors Edition", marca:"Afnan", linea:"Supremacy",
     categoria:"arabe", ml:100, precio:55,
     en_promo:false, disponible:true, foto:"fotos/arabe/afnan-collectors-edition.webp",
-    descripcion:"Oud · Rosa árabe · Ámbar dorado"
+    descripcion:"Piña · Bergamota · Flor de Naranjo · Ámbar"
   },
 
   // ── AHMED AL MAGHRIBI ─────────────────────────────────────────
@@ -36,13 +37,13 @@ const PERFUMES = [
     id:"b-001", nombre:"KAAF", marca:"Ahmed Al Maghribi", linea:"Kaaf",
     categoria:"arabe", ml:100, precio:40,
     en_promo:false, disponible:true, foto:"fotos/arabe/kaaf.jpg",
-    descripcion:"Oud ahumado · Ámbar · Especias orientales"
+    descripcion:"Lavanda · Sandía · Jazmín · Sándalo"
   },
   {
     id:"b-002", nombre:"KAAF NOIR", marca:"Ahmed Al Maghribi", linea:"Kaaf",
     categoria:"arabe", ml:100, precio:40,
     en_promo:false, disponible:true, foto:"fotos/arabe/kaaf-noir.webp",
-    descripcion:"Oud oscuro · Vetiver · Cuero árabe"
+    descripcion:"Cardamomo · Lavanda · Cedro · Ambroxan"
   },
 
   // ── AL HARAMAIN ───────────────────────────────────────────────
@@ -50,13 +51,13 @@ const PERFUMES = [
     id:"c-001", nombre:"Amber Oud Gold Edition", marca:"Al Haramain", linea:"Amber Oud",
     categoria:"arabe", ml:100, precio:45,
     en_promo:false, disponible:true, foto:"fotos/arabe/al-haramain-amber-oud-gold.webp",
-    descripcion:"Oud real · Ámbar dorado · Sándalo"
+    descripcion:"Melón · Piña · Ámbar · Vainilla"
   },
   {
-    id:"c-002", nombre:"Aqua Dubai", marca:"Al Haramain", linea:"Aqua",
+    id:"c-002", nombre:"Aqua Dubai", marca:"Al Haramain", linea:"Amber Oud",
     categoria:"arabe", ml:100, precio:50,
     en_promo:false, disponible:true, foto:"fotos/arabe/al-haramain-aqua-dubai.webp",
-    descripcion:"Bergamota · Almizcle acuático · Oud suave"
+    descripcion:"Bergamota · Melón · Piña · Almizcle"
   },
 
   // ── ARABIYAT PRESTIGE ─────────────────────────────────────────
@@ -64,87 +65,93 @@ const PERFUMES = [
     id:"d-001", nombre:"Mahad Al Dhahab", marca:"Arabiyat Prestige", linea:"Arabiyat",
     categoria:"arabe", ml:100, precio:45,
     en_promo:false, disponible:true, foto:"fotos/arabe/arabiyat-mahad-al-dhahab.webp",
-    descripcion:"Oud dorado · Ámbar · Rosa de Taif"
+    descripcion:"Bergamota · Oud · Ámbar · Vainilla"
   },
   {
     id:"d-002", nombre:"MARWA", marca:"Arabiyat Prestige", linea:"Arabiyat",
     categoria:"arabe", ml:100, precio:40,
     en_promo:false, disponible:true, foto:"fotos/arabe/arabiyat-marwa.jpg",
-    descripcion:"Rosa · Jazmín · Almizcle blanco"
+    descripcion:"Bergamota · Jengibre · Neroli · Ambroxan"
   },
   {
     id:"d-003", nombre:"UHUD", marca:"Arabiyat Prestige", linea:"Arabiyat",
     categoria:"arabe", ml:100, precio:45,
     en_promo:false, disponible:true, foto:"fotos/arabe/arabiyat-uhud.webp",
-    descripcion:"Oud · Vainilla · Especias ambarinas"
+    descripcion:"Caramelo · Miel · Rosa · Vainilla"
   },
 
   // ── ARMAF ─────────────────────────────────────────────────────
   {
-    id:"e-001", nombre:"Club de Nuit Iconic", marca:"Armaf", linea:"Club de Nuit",
+    id:"e-001", nombre:"Arabian Sky", marca:"Armaf", linea:"Eter",
+    categoria:"arabe", ml:100, precio:0,
+    en_promo:false, disponible:false, foto:"fotos/arabe/eter-arabian-sky.webp",
+    descripcion:"Bergamota · Caramelo · Lavanda · Cedro"
+  },
+  {
+    id:"e-002", nombre:"Club de Nuit Iconic", marca:"Armaf", linea:"Club de Nuit",
     categoria:"arabe", ml:100, precio:40,
     en_promo:false, disponible:true, foto:"fotos/arabe/armaf-cdni-iconic.webp",
-    descripcion:"Bergamota · Manzana · Patchouli · Almizcle"
+    descripcion:"Toronja · Menta · Incienso · Ámbar"
   },
   {
-    id:"e-002", nombre:"Club de Nuit Intense Man", marca:"Armaf", linea:"Club de Nuit",
+    id:"e-003", nombre:"Club de Nuit Intense Man", marca:"Armaf", linea:"Club de Nuit",
     categoria:"arabe", ml:100, precio:32,
     en_promo:false, disponible:true, foto:"fotos/arabe/armaf-cdni-intense.jpg",
-    descripcion:"Limón · Pino · Patchouli · Almizcle"
+    descripcion:"Piña · Bergamota · Abedul · Ambergris"
   },
   {
-    id:"e-003", nombre:"Club de Nuit Intense Man Extrait", marca:"Armaf", linea:"Club de Nuit",
+    id:"e-004", nombre:"Club de Nuit Intense Man Extrait", marca:"Armaf", linea:"Club de Nuit",
     categoria:"arabe", ml:100, precio:0,
     en_promo:false, disponible:false, foto:"fotos/arabe/armaf-cdni-intense-extrait.webp",
-    descripcion:"Limón · Pino · Patchouli · Almizcle · Extrait"
+    descripcion:"Piña · Bergamota · Abedul · Vainilla"
   },
   {
-    id:"e-004", nombre:"Club de Nuit Milestone", marca:"Armaf", linea:"Club de Nuit",
+    id:"e-005", nombre:"Club de Nuit Milestone", marca:"Armaf", linea:"Club de Nuit",
     categoria:"arabe", ml:100, precio:37,
     en_promo:false, disponible:true, foto:"fotos/arabe/armaf-cdni-milestone.jpg",
-    descripcion:"Bergamota · Coco · Almizcle blanco"
+    descripcion:"Notas Marinas · Violeta · Sándalo · Ambroxan"
   },
   {
-    id:"e-005", nombre:"Club de Nuit Précieux", marca:"Armaf", linea:"Club de Nuit",
+    id:"e-006", nombre:"Club de Nuit Précieux", marca:"Armaf", linea:"Club de Nuit",
     categoria:"arabe", ml:100, precio:46,
     en_promo:false, disponible:true, foto:"fotos/arabe/armaf-cdni-precieux.webp",
-    descripcion:"Oud · Patchouli · Cuero · Almizcle"
+    descripcion:"Caramelo · Piña · Jazmín · Ambroxan"
   },
   {
-    id:"e-006", nombre:"Club de Nuit Sillage", marca:"Armaf", linea:"Club de Nuit",
+    id:"e-007", nombre:"Club de Nuit Sillage", marca:"Armaf", linea:"Club de Nuit",
     categoria:"arabe", ml:100, precio:37,
     en_promo:false, disponible:true, foto:"fotos/arabe/armaf-cdni-sillage.webp",
-    descripcion:"Manzana · Rosa · Patchouli · Ámbar"
+    descripcion:"Bergamota · Rosa · Iris · Ambroxan"
   },
   {
-    id:"e-007", nombre:"Club de Nuit Urban Man Elixir", marca:"Armaf", linea:"Club de Nuit",
+    id:"e-008", nombre:"Club de Nuit Urban Man Elixir", marca:"Armaf", linea:"Club de Nuit",
     categoria:"arabe", ml:100, precio:37,
     en_promo:false, disponible:true, foto:"fotos/arabe/armaf-cdni-urban-elixir.jpg",
-    descripcion:"Especias · Oud · Madera de sándalo"
+    descripcion:"Bergamota · Azafrán · Lavanda · Ambroxan"
   },
   {
-    id:"e-008", nombre:"Dunescape", marca:"Armaf", linea:"Otras",
+    id:"e-009", nombre:"Dunescape", marca:"Armaf", linea:"Otras",
     categoria:"arabe", ml:100, precio:45,
     en_promo:false, disponible:true, foto:"fotos/arabe/armaf-dunescape.webp",
-    descripcion:"Arena dorada · Ámbar cálido · Madera"
+    descripcion:"Bergamota · Manzana · Notas Ozónicas · Ámbar"
   },
   {
-    id:"e-009", nombre:"Mandarin Sky", marca:"Armaf", linea:"Odyssey",
+    id:"e-010", nombre:"Mandarin Sky", marca:"Armaf", linea:"Odyssey",
     categoria:"arabe", ml:100, precio:0,
     en_promo:false, disponible:false, foto:"fotos/arabe/armaf-mandarin-sky.jpg",
-    descripcion:"Mandarina · Cítricos · Madera fresca"
+    descripcion:"Mandarina · Azafrán · Caramelo · Tonka"
   },
   {
-    id:"e-010", nombre:"Odyssey Aqua", marca:"Armaf", linea:"Odyssey",
+    id:"e-011", nombre:"Odyssey Aqua", marca:"Armaf", linea:"Odyssey",
     categoria:"arabe", ml:100, precio:0,
     en_promo:false, disponible:false, foto:"fotos/arabe/armaf-odyssey-aqua.webp",
-    descripcion:"Notas acuáticas · Almizcle · Madera"
+    descripcion:"Naranja · Lavanda · Menta · Ambroxan"
   },
   {
-    id:"e-011", nombre:"Yum Yum", marca:"Armaf", linea:"Otras",
+    id:"e-012", nombre:"Yum Yum", marca:"Armaf", linea:"Otras",
     categoria:"arabe", ml:100, precio:0,
     en_promo:false, disponible:false, foto:"fotos/arabe/armaf-yum-yum.jpg",
-    descripcion:"Frutal · Dulce · Almizcle suave"
+    descripcion:"Cereza · Rosa · Vainilla · Almizcle"
   },
 
   // ── BHARARA ───────────────────────────────────────────────────
@@ -152,7 +159,7 @@ const PERFUMES = [
     id:"f-001", nombre:"Bharara King", marca:"Bharara", linea:"Bharara",
     categoria:"arabe", ml:100, precio:0,
     en_promo:false, disponible:false, foto:"fotos/arabe/bharara-king.webp",
-    descripcion:"Oud · Cuero · Especias reales"
+    descripcion:"Naranja · Bergamota · Vainilla · Ámbar"
   },
 
   // ── DUMONT PARIS ──────────────────────────────────────────────
@@ -160,19 +167,19 @@ const PERFUMES = [
     id:"g-001", nombre:"Nitro Elixir", marca:"Dumont Paris", linea:"Nitro",
     categoria:"arabe", ml:100, precio:0,
     en_promo:false, disponible:false, foto:"fotos/arabe/dumont-nitro-elixir.webp",
-    descripcion:"Especias · Oud · Ámbar oscuro"
+    descripcion:"Cardamomo · Praliné · Tonka · Ambergris"
   },
   {
     id:"g-002", nombre:"Nitro Red", marca:"Dumont Paris", linea:"Nitro",
     categoria:"arabe", ml:100, precio:0,
     en_promo:false, disponible:false, foto:"fotos/arabe/dumont-nitro-red.jpg",
-    descripcion:"Frutal rojo · Especias · Almizcle"
+    descripcion:"Manzana · Lavanda · Sandía · Ámbar"
   },
   {
     id:"g-003", nombre:"Nitro Red Intensly", marca:"Dumont Paris", linea:"Nitro",
     categoria:"arabe", ml:100, precio:0,
     en_promo:false, disponible:false, foto:"fotos/arabe/dumont-nitro-red-intensly.webp",
-    descripcion:"Frutal intenso · Especias · Oud"
+    descripcion:"Durazno · Manzana · Cedro · Ámbar"
   },
 
   // ── EMPER ─────────────────────────────────────────────────────
@@ -180,39 +187,31 @@ const PERFUMES = [
     id:"h-001", nombre:"Intimation", marca:"Emper", linea:"Emper",
     categoria:"arabe", ml:100, precio:18,
     en_promo:false, disponible:true, foto:"fotos/arabe/emper-intimation.webp",
-    descripcion:"Floral · Almizcle · Ámbar suave"
+    descripcion:"Bergamota · Jengibre · Neroli · Ambroxan"
   },
   {
     id:"h-002", nombre:"Ocean Breeze", marca:"Emper", linea:"Emper",
     categoria:"arabe", ml:100, precio:25,
     en_promo:false, disponible:true, foto:"fotos/arabe/emper-ocean-breeze.webp",
-    descripcion:"Aguamarina · Cítricos · Almizcle marino"
+    descripcion:"Menta · Cítricos · Rosa · Albaricoque"
   },
   {
     id:"h-003", nombre:"Phantom By Hero", marca:"Emper", linea:"Emper",
     categoria:"arabe", ml:100, precio:18,
     en_promo:false, disponible:true, foto:"fotos/arabe/emper-phantom-hero.webp",
-    descripcion:"Lavanda · Vainilla · Notas metálicas"
+    descripcion:"Almendra · Chocolate · Ron · Café"
   },
   {
     id:"h-004", nombre:"Shinning City", marca:"Emper", linea:"Emper",
     categoria:"arabe", ml:100, precio:18,
     en_promo:false, disponible:true, foto:"fotos/arabe/emper-shinning-city.webp",
-    descripcion:"Cítricos · Almizcle limpio · Cedro"
+    descripcion:"Yuzu · Neroli · Romero · Pimienta Rosa"
   },
   {
     id:"h-005", nombre:"The Immencity", marca:"Emper", linea:"Emper",
     categoria:"arabe", ml:100, precio:18,
     en_promo:false, disponible:true, foto:"fotos/arabe/emper-immencity.webp",
-    descripcion:"Oud · Ámbar negro · Especias oscuras"
-  },
-
-  // ── ETER ──────────────────────────────────────────────────────
-  {
-    id:"i-001", nombre:"Arabian Sky", marca:"Eter", linea:"Eter",
-    categoria:"arabe", ml:100, precio:0,
-    en_promo:false, disponible:false, foto:"fotos/arabe/eter-arabian-sky.webp",
-    descripcion:"Oud árabe · Almizcle · Especias del desierto"
+    descripcion:"Toronja · Bergamota · Notas Acuáticas · Ambroxan"
   },
 
   // ── FRENCH AVENUE ─────────────────────────────────────────────
@@ -220,19 +219,19 @@ const PERFUMES = [
     id:"j-001", nombre:"Aether Extrait", marca:"French Avenue", linea:"Aether",
     categoria:"arabe", ml:100, precio:0,
     en_promo:false, disponible:false, foto:"fotos/arabe/french-aether-extrait.webp",
-    descripcion:"Oud · Rosa · Sándalo · Almizcle blanco"
+    descripcion:"Manzana Verde · Bergamota · Cashmeran · Almizcle"
   },
   {
     id:"j-002", nombre:"Liquid Brun", marca:"French Avenue", linea:"Liquid",
     categoria:"arabe", ml:100, precio:38,
     en_promo:false, disponible:true, foto:"fotos/arabe/french-liquid-brun.webp",
-    descripcion:"Caramelo · Vainilla café · Madera cálida"
+    descripcion:"Canela · Cardamomo · Vainilla Bourbon · Praliné"
   },
   {
     id:"j-003", nombre:"Vulcan Feu", marca:"French Avenue", linea:"Vulcan",
     categoria:"arabe", ml:100, precio:0,
     en_promo:false, disponible:false, foto:"fotos/arabe/french-vulcan-feu.webp",
-    descripcion:"Especias ardientes · Oud · Cuero"
+    descripcion:"Mango · Jengibre · Praliné · Tonka"
   },
 
   // ── JO MILANO PARIS ───────────────────────────────────────────
@@ -240,13 +239,13 @@ const PERFUMES = [
     id:"k-001", nombre:"No Limits", marca:"Jo Milano Paris", linea:"Game of Spades",
     categoria:"arabe", ml:100, precio:0,
     en_promo:false, disponible:false, foto:"fotos/arabe/jo-milano-no-limits.webp",
-    descripcion:"Oud · Especias · Cuero intenso"
+    descripcion:"Cítricos · Iris · Amyris · Tonka"
   },
   {
     id:"k-002", nombre:"Wildcard", marca:"Jo Milano Paris", linea:"Game of Spades",
     categoria:"arabe", ml:100, precio:0,
     en_promo:false, disponible:false, foto:"fotos/arabe/jo-milano-wildcard.webp",
-    descripcion:"Almizcle · Madera · Ámbar especiado"
+    descripcion:"Bergamota · Manzana · Vainilla · Tonka"
   },
 
   // ── KHADLAJ ───────────────────────────────────────────────────
@@ -254,13 +253,13 @@ const PERFUMES = [
     id:"l-001", nombre:"ShiyaKa Shadow", marca:"Khadlaj", linea:"ShiyaKa",
     categoria:"arabe", ml:100, precio:35,
     en_promo:false, disponible:true, foto:"fotos/arabe/khadlaj-shiyaka-shadow.webp",
-    descripcion:"Oud negro · Cuero · Incienso"
+    descripcion:"Toronja · Lavanda · Cedro · Patchouli"
   },
   {
     id:"l-002", nombre:"ShiyaKa Snow", marca:"Khadlaj", linea:"ShiyaKa",
     categoria:"arabe", ml:100, precio:35,
     en_promo:false, disponible:true, foto:"fotos/arabe/khadlaj-shiyaka-snow.webp",
-    descripcion:"Almizcle blanco · Bergamota · Notas glaciales"
+    descripcion:"Bergamota · Neroli · Pimienta Rosa · Vetiver"
   },
 
   // ── LATTAFA ───────────────────────────────────────────────────
@@ -268,55 +267,55 @@ const PERFUMES = [
     id:"m-001", nombre:"ASAD", marca:"Lattafa", linea:"Asad",
     categoria:"arabe", ml:100, precio:27,
     en_promo:false, disponible:true, foto:"fotos/arabe/lattafa-asad.jpg",
-    descripcion:"Oud · Ámbar · Cuero real"
+    descripcion:"Piña · Tabaco · Café · Vainilla"
   },
   {
     id:"m-002", nombre:"Asad Bourbon", marca:"Lattafa", linea:"Asad",
     categoria:"arabe", ml:100, precio:31,
     en_promo:false, disponible:true, foto:"fotos/arabe/lattafa-asad-bourbon.jpg",
-    descripcion:"Whisky · Oud · Vainilla · Madera"
+    descripcion:"Lavanda · Cacao · Nuez Moscada · Vainilla Bourbon"
   },
   {
     id:"m-003", nombre:"Khamrah Clásico", marca:"Lattafa", linea:"Khamrah",
     categoria:"arabe", ml:100, precio:31,
     en_promo:false, disponible:true, foto:"fotos/arabe/lattafa-khamrah-clasico.webp",
-    descripcion:"Oud · Ámbar · Vainilla especiada"
+    descripcion:"Canela · Praliné · Vainilla · Oud"
   },
   {
     id:"m-004", nombre:"Khamrah Qahwa", marca:"Lattafa", linea:"Khamrah",
     categoria:"arabe", ml:100, precio:31,
     en_promo:false, disponible:true, foto:"fotos/arabe/lattafa-khamrah-qahwa.webp",
-    descripcion:"Café · Cardamomo · Ámbar oriental"
+    descripcion:"Cardamomo · Canela · Café · Praliné"
   },
   {
     id:"m-005", nombre:"Now EDP", marca:"Lattafa", linea:"Now",
     categoria:"arabe", ml:100, precio:25,
     en_promo:false, disponible:true, foto:"fotos/arabe/lattafa-now-edp.jpg",
-    descripcion:"Bergamota · Pimienta · Ambroxan"
+    descripcion:"Piña · Bergamota · Abedul · Vainilla"
   },
   {
     id:"m-006", nombre:"Now White", marca:"Lattafa", linea:"Now",
     categoria:"arabe", ml:100, precio:25,
     en_promo:false, disponible:true, foto:"fotos/arabe/lattafa-now-white.png",
-    descripcion:"Almizcle blanco · Bergamota · Cedro"
+    descripcion:"Toronja · Bergamota · Patchouli · Almizcle"
   },
   {
     id:"m-007", nombre:"Oud for Glory", marca:"Lattafa", linea:"Bade'e Al Oud",
     categoria:"arabe", ml:100, precio:45,
     en_promo:false, disponible:true, foto:"fotos/arabe/lattafa-oud-for-glory.jpg",
-    descripcion:"Gran Oud · Rosa árabe · Especias sagradas"
+    descripcion:"Azafrán · Nuez Moscada · Oud · Almizcle"
   },
   {
     id:"m-008", nombre:"Yara", marca:"Lattafa", linea:"Yara",
     categoria:"arabe", ml:100, precio:0,
     en_promo:false, disponible:false, foto:"fotos/arabe/lattafa-yara.webp",
-    descripcion:"Frutal · Floral · Almizcle suave"
+    descripcion:"Orquídea · Frutas Tropicales · Vainilla · Almizcle"
   },
   {
     id:"m-009", nombre:"Yara Elixir", marca:"Lattafa", linea:"Yara",
     categoria:"arabe", ml:100, precio:0,
     en_promo:false, disponible:false, foto:"fotos/arabe/lattafa-yara-elixir.webp",
-    descripcion:"Frutal intenso · Rosa · Ámbar"
+    descripcion:"Fresa · Jazmín · Caramelo · Vainilla"
   },
 
   // ── PARIS CORNER ──────────────────────────────────────────────
@@ -324,7 +323,7 @@ const PERFUMES = [
     id:"n-001", nombre:"Rifaqaat", marca:"Paris Corner", linea:"Paris Corner",
     categoria:"arabe", ml:100, precio:0,
     en_promo:false, disponible:false, foto:"fotos/arabe/paris-corner-rifaqaat.webp",
-    descripcion:"Oud · Especias árabes · Almizcle"
+    descripcion:"Pimienta Negra · Azafrán · Olíbano · Vainilla"
   },
 
   // ── RASASI ────────────────────────────────────────────────────
@@ -332,31 +331,31 @@ const PERFUMES = [
     id:"o-001", nombre:"Hawas Classic", marca:"Rasasi", linea:"Hawas",
     categoria:"arabe", ml:100, precio:35,
     en_promo:false, disponible:true, foto:"fotos/arabe/rasasi-hawas-classic.webp",
-    descripcion:"Notas marinas · Cítricos · Madera acuática"
+    descripcion:"Bergamota · Canela · Flor de Naranjo · Sándalo"
   },
   {
     id:"o-002", nombre:"Hawas Fire", marca:"Rasasi", linea:"Hawas",
     categoria:"arabe", ml:100, precio:45,
     en_promo:false, disponible:true, foto:"fotos/arabe/rasasi-hawas-fire.webp",
-    descripcion:"Pimienta roja · Especias · Madera ardiente"
+    descripcion:"Salvia · Notas Marinas · Ámbar · Ambergris"
   },
   {
     id:"o-003", nombre:"Hawas Kobra", marca:"Rasasi", linea:"Hawas",
     categoria:"arabe", ml:100, precio:38,
     en_promo:false, disponible:false, foto:"",
-    descripcion:"Especias · Incienso · Madera oscura"
+    descripcion:"Jengibre · Té Verde · Canela · Ámbar"
   },
   {
     id:"o-004", nombre:"Hawas Malibu", marca:"Rasasi", linea:"Hawas",
     categoria:"arabe", ml:100, precio:45,
     en_promo:false, disponible:true, foto:"fotos/arabe/rasasi-hawas-malibu.jpg",
-    descripcion:"Coco · Sal marina · Ylang ylang"
+    descripcion:"Piña · Lavanda · Tonka · Almizcle"
   },
   {
     id:"o-005", nombre:"Hawas Tropical", marca:"Rasasi", linea:"Hawas",
     categoria:"arabe", ml:100, precio:45,
     en_promo:false, disponible:true, foto:"fotos/arabe/rasasi-hawas-tropical.webp",
-    descripcion:"Frutos tropicales · Madera · Almizcle"
+    descripcion:"Coco · Higo · Jengibre · Sándalo"
   },
 
   // ── RAYHAAN ───────────────────────────────────────────────────
@@ -364,31 +363,31 @@ const PERFUMES = [
     id:"p-001", nombre:"Aquatica", marca:"Rayhaan", linea:"Rayhaan",
     categoria:"arabe", ml:100, precio:0,
     en_promo:false, disponible:false, foto:"fotos/arabe/rayhaan-aquatica.webp",
-    descripcion:"Notas acuáticas · Almizcle marino · Frescor"
+    descripcion:"Lima · Coco · Jazmín · Ron"
   },
   {
     id:"p-002", nombre:"Italia", marca:"Rayhaan", linea:"Rayhaan",
     categoria:"arabe", ml:100, precio:0,
     en_promo:false, disponible:false, foto:"fotos/arabe/rayhaan-italia.jpg",
-    descripcion:"Cítricos italianos · Madera · Almizcle suave"
+    descripcion:"Lavanda · Miel · Canela · Vainilla"
   },
   {
     id:"p-003", nombre:"Jungle Vibe", marca:"Rayhaan", linea:"Rayhaan",
     categoria:"arabe", ml:100, precio:0,
     en_promo:false, disponible:false, foto:"fotos/arabe/rayhaan-jungle-vibe.webp",
-    descripcion:"Verde tropical · Madera · Especias frescas"
+    descripcion:"Higo · Toronja · Notas Verdes · Sándalo"
   },
   {
     id:"p-004", nombre:"Tropical Vibe", marca:"Rayhaan", linea:"Rayhaan",
     categoria:"arabe", ml:100, precio:0,
     en_promo:false, disponible:false, foto:"fotos/arabe/rayhaan-tropical-vibe.webp",
-    descripcion:"Frutal tropical · Coco · Almizcle"
+    descripcion:"Mango · Piña · Coco · Almizcle"
   },
   {
     id:"p-005", nombre:"Valhalla", marca:"Rayhaan", linea:"Rayhaan",
     categoria:"arabe", ml:100, precio:0,
     en_promo:false, disponible:false, foto:"fotos/arabe/rayhaan-valhalla.webp",
-    descripcion:"Oud vikingo · Madera oscura · Especias"
+    descripcion:"Frambuesa · Coñac · Rosa · Praliné"
   }
 ];
 
@@ -470,7 +469,6 @@ function cardHTML(p, i) {
   const delay     = `${Math.min(i % 8, 7) * 50}ms`;
   const badgePromo = p.en_promo ? `<span class="badge-promo">Promo</span>` : '';
 
-  // Agotado: sin precio o no disponible
   const agotado = !p.disponible || p.precio === 0;
   const badgeSold = agotado
     ? `<div class="badge-sold"><span>Agotado</span></div>` : '';
