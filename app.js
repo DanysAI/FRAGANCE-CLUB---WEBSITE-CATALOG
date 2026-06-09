@@ -342,7 +342,7 @@ const PERFUMES = [
   {
     id:"o-003", nombre:"Hawas Kobra", marca:"Rasasi", linea:"Hawas",
     categoria:"arabe", ml:100, precio:38,
-    en_promo:false, disponible:false, foto:"fotos/arabe/rasasi-hawas-kobra.jpg",
+    en_promo:false, disponible:false, foto:"fotos/arabe/rasasi-hawas-kobra.webp",
     descripcion:"Jengibre · Té Verde · Canela · Ámbar"
   },
   {
@@ -416,8 +416,8 @@ function buildCatalog(categoria, gridId, filterId, placeholderId, searchId) {
 function buildSection(items, gridId, filterId, searchId) {
   const grid = document.getElementById(gridId);
   if (!grid || !items.length) return;
+  buildFilter(items, filterId, grid, searchId); // filter first so _apply exists
   buildSearch(items, searchId, grid, filterId);
-  buildFilter(items, filterId, grid, searchId);
   renderCards(items, grid);
 }
 
@@ -447,11 +447,13 @@ function buildSearch(items, searchId, grid, filterId) {
   input.addEventListener('input', () => {
     const q = input.value.trim().toLowerCase();
     const fw = document.getElementById(filterId);
-    if (fw) {
-      fw.querySelectorAll('.fp:not(.fp--avail)').forEach((b,i) => b.classList.toggle('active', i === 0));
-      fw._brand = 'all';
-      fw._apply(q);
-    }
+    if (!fw) return;
+    // reset brand dropdown to "all"
+    fw._brand = 'all';
+    const trigger = fw.querySelector('.fp--brand-btn');
+    if (trigger) { trigger.textContent = 'Marcas ▾'; trigger.classList.remove('fp--brand-sel'); }
+    fw.querySelectorAll('.fp-opt').forEach((o,i) => o.classList.toggle('active', i === 0));
+    fw._apply(q);
   });
 }
 
@@ -510,7 +512,7 @@ function buildFilter(items, filterId, grid, searchId) {
   wrap._apply = function(q = '') {
     let result = wrap._items;
     if (wrap._brand !== 'all') result = result.filter(p => p.marca === wrap._brand);
-    if (wrap._availOnly)        result = result.filter(p => p.disponible && p.precio > 0);
+    if (wrap._availOnly)       result = result.filter(p => p.disponible && p.precio > 0);
     if (q) result = result.filter(p =>
       p.nombre.toLowerCase().includes(q) ||
       p.marca.toLowerCase().includes(q) ||
@@ -518,28 +520,53 @@ function buildFilter(items, filterId, grid, searchId) {
     renderCards(result, grid);
   };
 
-  const brands = ['all', ...new Set(items.map(p => p.marca))];
-  wrap.innerHTML =
-    `<button class="fp fp--avail" data-avail="1">✓ Solo disponibles</button>` +
-    brands.map(b =>
-      `<button class="fp${b === 'all' ? ' active' : ''}" data-brand="${esc(b)}">
-        ${b === 'all' ? 'Todas las marcas' : esc(b)}
-      </button>`
-    ).join('');
+  const brands = [...new Set(items.map(p => p.marca))];
 
-  wrap.addEventListener('click', e => {
-    const btn = e.target.closest('.fp');
-    if (!btn) return;
+  wrap.innerHTML = `
+    <button class="fp fp--avail" data-avail="1">✓ Solo disponibles</button>
+    <div class="brand-drop">
+      <button class="fp fp--brand-btn">Marcas ▾</button>
+      <div class="brand-panel">
+        <button class="fp-opt active" data-brand="all">Todas las marcas</button>
+        ${brands.map(b => `<button class="fp-opt" data-brand="${esc(b)}">${esc(b)}</button>`).join('')}
+      </div>
+    </div>`;
+
+  const availBtn = wrap.querySelector('.fp--avail');
+  const trigger  = wrap.querySelector('.fp--brand-btn');
+  const panel    = wrap.querySelector('.brand-panel');
+
+  // Toggle dropdown
+  trigger.addEventListener('click', e => {
+    e.stopPropagation();
+    panel.classList.toggle('open');
+  });
+
+  // Close dropdown when clicking outside
+  document.addEventListener('click', () => panel.classList.remove('open'));
+  panel.addEventListener('click', e => e.stopPropagation());
+
+  // Solo disponibles toggle
+  availBtn.addEventListener('click', () => {
+    wrap._availOnly = !wrap._availOnly;
+    availBtn.classList.toggle('active', wrap._availOnly);
     const si = document.getElementById(searchId)?.querySelector('.search-input');
     if (si) si.value = '';
-    if (btn.dataset.avail) {
-      wrap._availOnly = !wrap._availOnly;
-      btn.classList.toggle('active', wrap._availOnly);
-    } else {
-      wrap.querySelectorAll('.fp:not(.fp--avail)').forEach(b => b.classList.remove('active'));
-      btn.classList.add('active');
-      wrap._brand = btn.dataset.brand;
-    }
+    wrap._apply('');
+  });
+
+  // Brand selection
+  panel.addEventListener('click', e => {
+    const opt = e.target.closest('.fp-opt');
+    if (!opt) return;
+    panel.querySelectorAll('.fp-opt').forEach(o => o.classList.remove('active'));
+    opt.classList.add('active');
+    wrap._brand = opt.dataset.brand;
+    trigger.textContent = (wrap._brand === 'all' ? 'Marcas' : wrap._brand) + ' ▾';
+    trigger.classList.toggle('fp--brand-sel', wrap._brand !== 'all');
+    panel.classList.remove('open');
+    const si = document.getElementById(searchId)?.querySelector('.search-input');
+    if (si) si.value = '';
     wrap._apply('');
   });
 }

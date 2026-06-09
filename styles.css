@@ -304,7 +304,7 @@ img { display:block; max-width:100%; }
 
 /* ── FILTER BAR ────────────────────────────── */
 .filter-bar {
-  display:flex; flex-wrap:wrap; gap:6px;
+  display:flex; flex-wrap:nowrap; align-items:center; gap:8px;
   margin-bottom:28px;
 }
 .fp {
@@ -315,7 +315,7 @@ img { display:block; max-width:100%; }
   font-family:var(--f-body);
   font-size:.64rem; font-weight:500;
   letter-spacing:.14em; text-transform:uppercase;
-  cursor:pointer;
+  cursor:pointer; white-space:nowrap;
   transition:background .18s, border-color .18s, color .18s;
   -webkit-tap-highlight-color:transparent;
 }
@@ -324,18 +324,50 @@ img { display:block; max-width:100%; }
   background:var(--gold); border-color:var(--gold);
   color:var(--black); font-weight:600;
 }
+/* Solo disponibles pill */
 .fp--avail {
   border-style:dashed;
   border-color:rgba(201,168,76,.35);
-  margin-right:10px;
 }
 .fp--avail.active {
   background:rgba(201,168,76,.12);
-  border-style:solid;
-  border-color:var(--gold);
-  color:var(--gold);
-  font-weight:600;
+  border-style:solid; border-color:var(--gold);
+  color:var(--gold); font-weight:600;
 }
+/* Brand dropdown */
+.brand-drop { position:relative; }
+.fp--brand-btn { padding-right:12px; }
+.fp--brand-sel {
+  background:rgba(201,168,76,.1);
+  border-color:var(--gold);
+  color:var(--gold); font-weight:600;
+}
+.brand-panel {
+  display:none;
+  position:absolute;
+  top:calc(100% + 6px); left:0;
+  min-width:200px;
+  background:#0f0f0f;
+  border:1px solid rgba(201,168,76,.25);
+  box-shadow:0 12px 40px rgba(0,0,0,.7);
+  z-index:300;
+  padding:6px 0;
+  max-height:320px; overflow-y:auto;
+}
+.brand-panel.open { display:block; }
+.fp-opt {
+  display:block; width:100%;
+  padding:9px 18px;
+  background:transparent; border:none;
+  color:var(--cream-60);
+  font-family:var(--f-body);
+  font-size:.62rem; font-weight:500;
+  letter-spacing:.14em; text-transform:uppercase;
+  text-align:left; cursor:pointer;
+  transition:background .14s, color .14s;
+}
+.fp-opt:hover { background:rgba(201,168,76,.08); color:var(--cream); }
+.fp-opt.active { color:var(--gold); font-weight:600; }
 
 /* ── GRID ──────────────────────────────────── */
 .grid {
