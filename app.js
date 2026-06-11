@@ -21,8 +21,8 @@ const PERFUMES = [
   },
   {
     id:"a-003", nombre:"9PM Night Out", marca:"Afnan", linea:"9PM",
-    categoria:"arabe", ml:100, precio:0,
-    en_promo:false, disponible:false, foto:"fotos/arabe/afnan-9pm-night-out.jpg",
+    categoria:"arabe", ml:100, precio:45,
+    en_promo:false, disponible:true, foto:"fotos/arabe/afnan-9pm-night-out.jpg",
     descripcion:"Pitahaya · Coñac · Toffee · Suede"
   },
   {
