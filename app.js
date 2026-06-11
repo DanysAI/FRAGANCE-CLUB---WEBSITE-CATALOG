@@ -694,8 +694,8 @@ function openModal(p) {
     ? `<img src="${esc(p.foto)}" alt="${esc(p.nombre)}">`
     : '<span style="font-size:2rem;color:rgba(201,168,76,.18)">✦</span>';
   const msg = agotado
-    ? `Hola! Me gustaría consultar disponibilidad de: *${p.nombre}* de ${p.marca} 🌸`
-    : `Hola! Me interesa: *${p.nombre}* de ${p.marca} · $${p.precio % 1 === 0 ? p.precio : p.precio.toFixed(2)} 🌸`;
+    ? `Hola! Me gustaría consultar disponibilidad de: *${p.nombre}* de ${p.marca}`
+    : `Hola! Me interesa: *${p.nombre}* de ${p.marca} · $${p.precio % 1 === 0 ? p.precio : p.precio.toFixed(2)}`;
   document.getElementById('pmodalWa').href = `https://wa.me/50763440771?text=${encodeURIComponent(msg)}`;
   document.getElementById('pmodal').classList.add('open');
   document.body.style.overflow = 'hidden';
